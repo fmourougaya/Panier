@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panier</title>
+<style>
+:root{--bg:#eef3ef;--surface:#fff;--ink:#1c2b24;--muted:#5d6e65;--green:#1f4d3a;--saffron:#e3a008;--line:#cfdad3;--r:10px}
+@media (prefers-color-scheme:dark){:root{--bg:#141c18;--surface:#1d2823;--ink:#e6eee9;--muted:#9fb1a7;--green:#7fc4a0;--saffron:#f0b429;--line:#33433b}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,sans-serif}
+h1,h2,h3{font-family:Georgia,serif;margin:0}
+header{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding:1rem 1.25rem;border-bottom:3px solid var(--saffron);background:var(--surface)}
+h1{font-size:2rem;color:var(--green)}
+header label{display:flex;align-items:center;gap:.5rem;font-weight:600}
+input,select,textarea,button{font:inherit;color:inherit}
+input,select,textarea{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:.4rem .5rem;min-width:0}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--saffron);outline-offset:1px}
+#guests{width:4.5rem;font-size:1.1rem;text-align:center}
+main{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;padding:1.25rem;max-width:1100px;margin:auto}
+@media (max-width:760px){main{grid-template-columns:1fr}}
+section{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:1rem}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-bottom:.75rem}
+button{cursor:pointer;border:1px solid var(--green);background:var(--green);color:var(--surface);border-radius:6px;padding:.4rem .8rem}
+button.ghost{background:transparent;color:var(--green)}
+button.danger{background:transparent;border-color:#b3261e;color:#b3261e}
+ul{list-style:none;margin:0;padding:0}
+.recipe{display:flex;align-items:center;gap:.6rem;padding:.55rem 0;border-top:1px solid var(--line)}
+.recipe:first-child{border-top:0}
+.recipe label{flex:1;cursor:pointer}
+.recipe small{display:block;color:var(--muted)}
+.recipe input{width:1.2rem;height:1.2rem;accent-color:var(--green)}
+.aisle{margin-top:1rem}
+.aisle h3{font-size:1.05rem;color:var(--green);border-bottom:2px solid var(--saffron);display:inline-block;margin-bottom:.25rem}
+.item{display:flex;align-items:center;gap:.6rem;padding:.3rem 0}
+.item input[type=checkbox]{width:1.2rem;height:1.2rem;accent-color:var(--green)}
+.item label{flex:1;cursor:pointer}
+.item .q{color:var(--muted);white-space:nowrap}
+.item.done label{text-decoration:line-through;color:var(--muted)}
+.item .x{background:none;border:0;color:var(--muted);padding:0 .3rem;font-size:1.2rem}
+.empty{color:var(--muted)}
+#free{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--line)}
+#free input{flex:1;min-width:8rem}
+dialog{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink);width:min(680px,95vw);padding:1.25rem}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog label.f{display:block;font-weight:600;margin-top:.8rem}
+dialog label.f>input,dialog label.f>textarea{display:block;width:100%;margin-top:.2rem;font-weight:400}
+.ing{display:grid;grid-template-columns:4.5rem 6.5rem 1fr 9rem auto;gap:.35rem;margin-top:.35rem}
+@media (max-width:600px){.ing{grid-template-columns:4rem 1fr 1fr;}.ing .nm{grid-column:1/-1}}
+.acts{display:flex;gap:.5rem;margin-top:1.25rem;flex-wrap:wrap}
+.acts .sp{flex:1}
+</style>
+</head>
+<body>
+<header>
+  <h1>Panier</h1>
+  <label>Nombre de convives <input id="guests" type="number" min="1" max="99" value="4"></label>
+</header>
+<main>
+  <section>
+    <div class="bar"><h2>Recettes</h2><button id="addR">Ajouter une recette</button></div>
+    <ul id="rlist"></ul>
+  </section>
+  <section>
+    <div class="bar"><h2>Liste de courses</h2><button class="ghost" id="uncheck">Tout décocher</button></div>
+    <div id="slist"></div>
+    <form id="free">
+      <input id="fname" placeholder="Article libre (ex. papier toilette)" required>
+      <select id="faisle"></select>
+      <button>Ajouter</button>
+    </form>
+  </section>
+</main>
+
+<dialog id="dlg">
+  <form id="rform" method="dialog">
+    <h2 id="dtitle">Recette</h2>
+    <label class="f">Nom <input id="rname" required></label>
+    <label class="f">Pour combien de personnes ? <input id="rserv" type="number" min="1" value="4" required></label>
+    <div class="f" style="margin-top:.8rem;font-weight:600">Ingrédients (quantité, unité, nom, rayon)</div>
+    <div id="ings"></div>
+    <button type="button" class="ghost" id="addI" style="margin-top:.5rem">Ajouter un ingrédient</button>
+    <label class="f">Préparation <textarea id="rsteps" rows="4"></textarea></label>
+    <div class="acts">
+      <button type="submit">Enregistrer</button>
+      <button type="button" class="ghost" id="cancel">Annuler</button>
+      <span class="sp"></span>
+      <button type="button" class="danger" id="del">Supprimer</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+const AISLES=["Fruits et légumes","Boucherie et poissonnerie","Crèmerie","Boulangerie","Épicerie","Surgelés","Boissons","Non alimentaire","Autre"];
+const UNITS=["","g","kg","ml","cl","L","c. à soupe","c. à café"];
+const KEY="panier-v1";
+const seed=()=>[
+ {id:"r1",name:"Pâtes à la carbonara",servings:4,steps:"Cuire les pâtes. Faire revenir les lardons. Mélanger les œufs et le parmesan hors du feu avec les pâtes.",ings:[
+  {q:400,u:"g",n:"spaghetti",a:"Épicerie"},{q:200,u:"g",n:"lardons",a:"Boucherie et poissonnerie"},{q:4,u:"",n:"œufs",a:"Crèmerie"},{q:80,u:"g",n:"parmesan",a:"Crèmerie"}]},
+ {id:"r2",name:"Salade de tomates et mozzarella",servings:4,steps:"Couper les tomates et la mozzarella, assaisonner avec l'huile d'olive et le basilic.",ings:[
+  {q:800,u:"g",n:"tomates",a:"Fruits et légumes"},{q:250,u:"g",n:"mozzarella",a:"Crèmerie"},{q:3,u:"c. à soupe",n:"huile d'olive",a:"Épicerie"},{q:1,u:"",n:"basilic",a:"Fruits et légumes"}]},
+ {id:"r3",name:"Poulet rôti et pommes de terre",servings:4,steps:"Enfourner le poulet 1 h 15 à 200 °C avec les pommes de terre et les oignons.",ings:[
+  {q:1,u:"",n:"poulet entier",a:"Boucherie et poissonnerie"},{q:1,u:"kg",n:"pommes de terre",a:"Fruits et légumes"},{q:2,u:"",n:"oignons",a:"Fruits et légumes"},{q:20,u:"g",n:"beurre",a:"Crèmerie"}]},
+ {id:"r4",name:"Crêpes",servings:4,steps:"Mélanger farine, œufs, lait et beurre fondu. Laisser reposer 1 h puis cuire.",ings:[
+  {q:250,u:"g",n:"farine",a:"Épicerie"},{q:3,u:"",n:"œufs",a:"Crèmerie"},{q:50,u:"cl",n:"lait",a:"Crèmerie"},{q:30,u:"g",n:"beurre",a:"Crèmerie"}]}
+];
+let S={recipes:seed(),sel:{},guests:4,checked:{},free:[]};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw))}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const opts=(arr,cur)=>arr.map(v=>`<option value="${esc(v)}"${v===cur?" selected":""}>${esc(v||"(sans unité)")}</option>`).join("");
+const fmt=n=>(Math.round(n*100)/100).toString().replace(".",",");
+
+function renderRecipes(){
+  $("rlist").innerHTML=S.recipes.length?S.recipes.map(r=>`<li class="recipe">
+   <input type="checkbox" id="c${r.id}" data-id="${r.id}"${S.sel[r.id]?" checked":""}>
+   <label for="c${r.id}">${esc(r.name)}<small>${r.ings.length} ingrédients, prévu pour ${r.servings}</small></label>
+   <button class="ghost" data-edit="${r.id}">Modifier</button></li>`).join(""):'<li class="empty">Aucune recette. Ajoutez-en une pour commencer.</li>';
+}
+
+function renderShop(){
+  const map={};
+  S.recipes.filter(r=>S.sel[r.id]).forEach(r=>{
+    r.ings.forEach(i=>{
+      const k=[i.a,i.n.trim().toLowerCase(),i.u].join("|");
+      const q=(Number(i.q)||0)*S.guests/r.servings;
+      (map[k]=map[k]||{key:k,a:i.a,n:i.n.trim(),u:i.u,q:0}).q+=q;
+    });
+  });
+  const by={};
+  Object.values(map).forEach(it=>(by[it.a]=by[it.a]||[]).push(it));
+  S.free.forEach(f=>(by[f.a]=by[f.a]||[]).push({free:true,id:f.id,n:f.name}));
+  const names=AISLES.filter(a=>by[a]).concat(Object.keys(by).filter(a=>!AISLES.includes(a)));
+  $("slist").innerHTML=names.length?names.map(a=>`<div class="aisle"><h3>${esc(a)}</h3>${by[a].sort((x,y)=>x.n.localeCompare(y.n,"fr")).map(it=>{
+    const id=it.free?"f"+it.id:"k"+it.key, done=it.free?S.free.find(f=>f.id===it.id).done:S.checked[it.key];
+    const qty=it.free||!it.q?"":`<span class="q">${fmt(it.q)}${it.u?" "+esc(it.u):""}</span>`;
+    return `<div class="item${done?" done":""}"><input type="checkbox" id="${esc(id)}" ${it.free?`data-free="${it.id}"`:`data-key="${esc(it.key)}"`}${done?" checked":""}>
+     <label for="${esc(id)}">${esc(it.n)}</label>${qty}${it.free?`<button class="x" data-rm="${it.id}" aria-label="Retirer ${esc(it.n)}">×</button>`:""}</div>`}).join("")}</div>`).join("")
+   :'<p class="empty">Cochez des recettes pour générer la liste, ou ajoutez un article libre.</p>';
+}
+const render=()=>{renderRecipes();renderShop()};
+
+$("guests").value=S.guests;
+$("guests").oninput=e=>{S.guests=Math.max(1,parseInt(e.target.value)||1);save();renderShop()};
+$("faisle").innerHTML=AISLES.map(a=>`<option${a==="Non alimentaire"?" selected":""}>${a}</option>`).join("");
+$("rlist").onclick=e=>{
+  const id=e.target.dataset.id, ed=e.target.dataset.edit;
+  if(id){S.sel[id]=e.target.checked;save();renderShop()}
+  if(ed)openDlg(ed);
+};
+$("slist").onclick=e=>{
+  const t=e.target;
+  if(t.dataset.key!==undefined){S.checked[t.dataset.key]=t.checked;save();renderShop()}
+  if(t.dataset.free){const f=S.free.find(f=>f.id===t.dataset.free);f.done=t.checked;save();renderShop()}
+  if(t.dataset.rm){S.free=S.free.filter(f=>f.id!==t.dataset.rm);save();renderShop()}
+};
+$("uncheck").onclick=()=>{S.checked={};S.free.forEach(f=>f.done=false);save();renderShop()};
+$("free").onsubmit=e=>{
+  e.preventDefault();
+  S.free.push({id:Date.now().toString(36),name:$("fname").value.trim(),a:$("faisle").value,done:false});
+  $("fname").value="";save();renderShop();
+};
+
+let editing=null;
+function ingRow(i={q:"",u:"",n:"",a:"Épicerie"}){
+  const d=document.createElement("div");d.className="ing";
+  d.innerHTML=`<input type="number" min="0" step="any" value="${esc(i.q)}" aria-label="Quantité">
+   <select aria-label="Unité">${opts(UNITS,i.u)}</select>
+   <input class="nm" value="${esc(i.n)}" placeholder="Ingrédient" aria-label="Nom" required>
+   <select aria-label="Rayon">${AISLES.map(a=>`<option${a===i.a?" selected":""}>${a}</option>`).join("")}</select>
+   <button type="button" class="danger" aria-label="Supprimer l'ingrédient">×</button>`;
+  d.querySelector("button").onclick=()=>d.remove();
+  $("ings").appendChild(d);
+}
+function openDlg(id){
+  editing=id;
+  const r=id?S.recipes.find(r=>r.id===id):{name:"",servings:S.guests,steps:"",ings:[{q:"",u:"",n:"",a:"Épicerie"}]};
+  $("dtitle").textContent=id?"Modifier la recette":"Nouvelle recette";
+  $("rname").value=r.name;$("rserv").value=r.servings;$("rsteps").value=r.steps;
+  $("ings").innerHTML="";r.ings.forEach(ingRow);
+  $("del").style.display=id?"":"none";
+  $("dlg").showModal();
+}
+$("addR").onclick=()=>openDlg(null);
+$("addI").onclick=()=>ingRow();
+$("cancel").onclick=()=>$("dlg").close();
+$("del").onclick=()=>{
+  if(!confirm("Supprimer cette recette ?"))return;
+  S.recipes=S.recipes.filter(r=>r.id!==editing);delete S.sel[editing];
+  save();render();$("dlg").close();
+};
+$("rform").onsubmit=()=>{
+  const ings=[...$("ings").children].map(d=>{
+    const [q,nm,rest]=[d.children[0],d.children[2],d.children];
+    return {q:parseFloat(q.value)||0,u:rest[1].value,n:nm.value.trim(),a:rest[3].value};
+  }).filter(i=>i.n);
+  const r={id:editing||"r"+Date.now().toString(36),name:$("rname").value.trim(),servings:Math.max(1,parseInt($("rserv").value)||1),steps:$("rsteps").value,ings};
+  const idx=S.recipes.findIndex(x=>x.id===r.id);
+  idx>=0?S.recipes[idx]=r:S.recipes.push(r);
+  save();render();
+};
+render();
+</script>
+</body>
+</html>
