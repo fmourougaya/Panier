@@ -59,6 +59,7 @@ dialog label.f>input,dialog label.f>textarea{display:block;width:100%;margin-top
 <main>
   <section>
     <div class="bar"><h2>Recettes</h2><button id="addR">Ajouter une recette</button></div>
+    <p class="empty" id="loaderr" hidden>Impossible de charger recettes.json. Ouvrez la page depuis un serveur (GitHub Pages, par exemple), pas en double-cliquant sur le fichier.</p>
     <ul id="rlist"></ul>
   </section>
   <section>
@@ -94,33 +95,21 @@ dialog label.f>input,dialog label.f>textarea{display:block;width:100%;margin-top
 const AISLES=["Fruits et légumes","Boucherie et poissonnerie","Crèmerie","Boulangerie","Épicerie","Surgelés","Boissons","Non alimentaire","Autre"];
 const UNITS=["","g","kg","ml","cl","L","c. à soupe","c. à café"];
 const KEY="panier-v1";
-const seed=()=>[
- {id:"r1",name:"Pâtes à la carbonara",servings:4,steps:"Cuire les pâtes. Faire revenir les lardons. Mélanger les œufs et le parmesan hors du feu avec les pâtes.",ings:[
-  {q:400,u:"g",n:"spaghetti",a:"Épicerie"},{q:200,u:"g",n:"lardons",a:"Boucherie et poissonnerie"},{q:4,u:"",n:"œufs",a:"Crèmerie"},{q:80,u:"g",n:"parmesan",a:"Crèmerie"}]},
- {id:"r2",name:"Salade de tomates et mozzarella",servings:4,steps:"Couper les tomates et la mozzarella, assaisonner avec l'huile d'olive et le basilic.",ings:[
-  {q:800,u:"g",n:"tomates",a:"Fruits et légumes"},{q:250,u:"g",n:"mozzarella",a:"Crèmerie"},{q:3,u:"c. à soupe",n:"huile d'olive",a:"Épicerie"},{q:1,u:"",n:"basilic",a:"Fruits et légumes"}]},
- {id:"r3",name:"Poulet rôti et pommes de terre",servings:4,steps:"Enfourner le poulet 1 h 15 à 200 °C avec les pommes de terre et les oignons.",ings:[
-  {q:1,u:"",n:"poulet entier",a:"Boucherie et poissonnerie"},{q:1,u:"kg",n:"pommes de terre",a:"Fruits et légumes"},{q:2,u:"",n:"oignons",a:"Fruits et légumes"},{q:20,u:"g",n:"beurre",a:"Crèmerie"}]},
- {id:"r4",name:"Crêpes",servings:4,steps:"Mélanger farine, œufs, lait et beurre fondu. Laisser reposer 1 h puis cuire.",ings:[
-  {q:250,u:"g",n:"farine",a:"Épicerie"},{q:3,u:"",n:"œufs",a:"Crèmerie"},{q:50,u:"cl",n:"lait",a:"Crèmerie"},{q:30,u:"g",n:"beurre",a:"Crèmerie"}]},
- {id:"dahl-saucisses",name:"Dahl aux saucisses fumées",servings:4,steps:"Émincer l'oignon, hacher l'ail et le gingembre, couper les saucisses en rondelles. Faire revenir oignon et saucisses 5 min dans l'huile, ajouter l'ail, le gingembre et les épices 1 min. Ajouter les lentilles rincées, les tomates, le lait de coco et 600 ml d'eau. Laisser mijoter 20 à 25 min en remuant, jusqu'à une texture crémeuse. Saler, poivrer.",ings:[
-  {q:250,u:"g",n:"lentilles corail",a:"Épicerie"},{q:300,u:"g",n:"saucisses fumées",a:"Boucherie et poissonnerie"},{q:1,u:"",n:"oignons",a:"Fruits et légumes"},{q:2,u:"",n:"gousses d'ail",a:"Fruits et légumes"},{q:20,u:"g",n:"gingembre frais",a:"Fruits et légumes"},{q:400,u:"g",n:"tomates concassées",a:"Épicerie"},{q:200,u:"ml",n:"lait de coco",a:"Épicerie"},{q:2,u:"c. à café",n:"curry en poudre",a:"Épicerie"},{q:1,u:"c. à café",n:"curcuma",a:"Épicerie"},{q:1,u:"c. à café",n:"cumin",a:"Épicerie"},{q:1,u:"c. à soupe",n:"huile d'olive",a:"Épicerie"}]},
- {id:"choux-lardons",name:"Poêlée de choux aux lardons",servings:4,steps:"Émincer le chou et l'oignon. Faire dorer les lardons à sec dans une grande poêle, les réserver. Faire fondre l'oignon dans la même poêle avec l'huile, ajouter le chou et cuire 15 à 20 min à feu moyen en remuant. Remettre les lardons, ajouter la crème et la moutarde, mélanger 2 min. Poivrer.",ings:[
-  {q:1,u:"",n:"chou vert frisé",a:"Fruits et légumes"},{q:200,u:"g",n:"lardons",a:"Boucherie et poissonnerie"},{q:1,u:"",n:"oignons",a:"Fruits et légumes"},{q:100,u:"g",n:"crème fraîche",a:"Crèmerie"},{q:1,u:"c. à soupe",n:"moutarde",a:"Épicerie"},{q:1,u:"c. à soupe",n:"huile d'olive",a:"Épicerie"}]},
- {id:"fajitas",name:"Fajitas au poulet",servings:4,steps:"Couper le poulet, les poivrons et les oignons en lanières. Mariner le poulet avec les épices, le jus du citron vert et un peu d'huile. Saisir le poulet à feu vif 6 à 8 min, le réserver. Faire revenir poivrons et oignons 8 à 10 min, remettre le poulet. Réchauffer les tortillas et servir avec la salsa, la crème et le fromage râpé.",ings:[
-  {q:500,u:"g",n:"blancs de poulet",a:"Boucherie et poissonnerie"},{q:3,u:"",n:"poivrons",a:"Fruits et légumes"},{q:2,u:"",n:"oignons",a:"Fruits et légumes"},{q:1,u:"",n:"citron vert",a:"Fruits et légumes"},{q:8,u:"",n:"tortillas de blé",a:"Épicerie"},{q:2,u:"c. à soupe",n:"épices à fajita",a:"Épicerie"},{q:1,u:"",n:"pot de salsa",a:"Épicerie"},{q:150,u:"g",n:"crème fraîche",a:"Crèmerie"},{q:100,u:"g",n:"fromage râpé",a:"Crèmerie"},{q:2,u:"c. à soupe",n:"huile d'olive",a:"Épicerie"}]},
- {id:"chili",name:"Chili con carne",servings:4,steps:"Faire revenir l'oignon et le poivron émincés, ajouter le bœuf haché et le faire dorer. Ajouter les épices, les tomates et les haricots rouges égouttés. Laisser mijoter 30 min à feu doux. Cuire le riz pendant ce temps et servir.",ings:[
-  {q:500,u:"g",n:"bœuf haché",a:"Boucherie et poissonnerie"},{q:1,u:"",n:"oignons",a:"Fruits et légumes"},{q:1,u:"",n:"poivrons",a:"Fruits et légumes"},{q:400,u:"g",n:"haricots rouges",a:"Épicerie"},{q:400,u:"g",n:"tomates concassées",a:"Épicerie"},{q:300,u:"g",n:"riz",a:"Épicerie"},{q:1,u:"c. à café",n:"cumin",a:"Épicerie"},{q:1,u:"c. à café",n:"paprika fumé",a:"Épicerie"},{q:0.5,u:"c. à café",n:"piment en poudre",a:"Épicerie"}]},
- {id:"curry-pois-chiches",name:"Curry de pois chiches et épinards",servings:4,steps:"Faire revenir l'oignon et l'ail, ajouter le curry 1 min. Ajouter les tomates, le lait de coco et les pois chiches égouttés, mijoter 10 min. Incorporer les épinards et cuire 5 à 8 min. Cuire le riz en parallèle et servir.",ings:[
-  {q:800,u:"g",n:"pois chiches",a:"Épicerie"},{q:400,u:"g",n:"épinards surgelés",a:"Surgelés"},{q:1,u:"",n:"oignons",a:"Fruits et légumes"},{q:2,u:"",n:"gousses d'ail",a:"Fruits et légumes"},{q:400,u:"g",n:"tomates concassées",a:"Épicerie"},{q:200,u:"ml",n:"lait de coco",a:"Épicerie"},{q:2,u:"c. à café",n:"curry en poudre",a:"Épicerie"},{q:300,u:"g",n:"riz",a:"Épicerie"}]}
-];
-let S={recipes:seed(),sel:{},guests:4,checked:{},free:[],seeded:seed().map(r=>r.id)};
+const $=id=>document.getElementById(id);
+let S={recipes:[],sel:{},guests:4,checked:{},free:[],seeded:[]};
 try{const raw=localStorage.getItem(KEY);if(raw){const old=JSON.parse(raw);S=Object.assign(S,old);if(!old.seeded)S.seeded=["r1","r2","r3","r4"]}}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
-// Ajoute les nouvelles recettes d'origine aux données déjà enregistrées, sans toucher à celles supprimées ou modifiées
-seed().forEach(r=>{if(!S.seeded.includes(r.id)){S.recipes.push(r);S.seeded.push(r.id)}});
-save();
-const $=id=>document.getElementById(id);
+// Recettes d'origine : lues dans recettes.json. Les nouvelles (id inconnu) sont ajoutées aux données déjà enregistrées ;
+// celles que vous avez supprimées ou modifiées ne sont pas touchées.
+async function loadRecipes(){
+  try{
+    const res=await fetch("recettes.json",{cache:"no-cache"});
+    if(!res.ok)throw new Error("HTTP "+res.status);
+    const data=await res.json();
+    data.forEach(r=>{if(!S.seeded.includes(r.id)){S.recipes.push(r);S.seeded.push(r.id)}});
+    save();
+  }catch(e){$("loaderr").hidden=false}
+}
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const opts=(arr,cur)=>arr.map(v=>`<option value="${esc(v)}"${v===cur?" selected":""}>${esc(v||"(sans unité)")}</option>`).join("");
 const fmt=n=>(Math.round(n*100)/100).toString().replace(".",",");
@@ -213,7 +202,7 @@ $("rform").onsubmit=()=>{
   idx>=0?S.recipes[idx]=r:S.recipes.push(r);
   save();render();
 };
-render();
+loadRecipes().then(render);
 </script>
 </body>
 </html>
