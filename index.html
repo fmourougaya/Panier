@@ -55,6 +55,7 @@ dialog label.f>input,dialog label.f>textarea{display:block;width:100%;margin-top
 <header>
   <h1>Panier</h1>
   <label>Nombre de convives <input id="guests" type="number" min="1" max="99" value="4"></label>
+  <span><button class="ghost" id="share" hidden>Partager la liste</button> <small id="sync" class="empty"></small></span>
 </header>
 <main>
   <section>
@@ -108,7 +109,8 @@ async function loadRecipes(){
     const data=await res.json();
     data.forEach(r=>{if(!S.seeded.includes(r.id)){S.recipes.push(r);S.seeded.push(r.id)}});
     save();
-  }catch(e){$("loaderr").hidden=false}
+    return data;
+  }catch(e){$("loaderr").hidden=false;return[]}
 }
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const opts=(arr,cur)=>arr.map(v=>`<option value="${esc(v)}"${v===cur?" selected":""}>${esc(v||"(sans unité)")}</option>`).join("");
@@ -144,23 +146,23 @@ function renderShop(){
 const render=()=>{renderRecipes();renderShop()};
 
 $("guests").value=S.guests;
-$("guests").oninput=e=>{S.guests=Math.max(1,parseInt(e.target.value)||1);save();renderShop()};
+$("guests").oninput=e=>{S.guests=Math.max(1,parseInt(e.target.value)||1);save();renderShop();sync("guests",S.guests)};
 $("faisle").innerHTML=AISLES.map(a=>`<option${a==="Non alimentaire"?" selected":""}>${a}</option>`).join("");
 $("rlist").onclick=e=>{
   const id=e.target.dataset.id, ed=e.target.dataset.edit;
-  if(id){S.sel[id]=e.target.checked;save();renderShop()}
+  if(id){S.sel[id]=e.target.checked;save();renderShop();sync("sel",id,e.target.checked)}
   if(ed)openDlg(ed);
 };
 $("slist").onclick=e=>{
   const t=e.target;
-  if(t.dataset.key!==undefined){S.checked[t.dataset.key]=t.checked;save();renderShop()}
-  if(t.dataset.free){const f=S.free.find(f=>f.id===t.dataset.free);f.done=t.checked;save();renderShop()}
-  if(t.dataset.rm){S.free=S.free.filter(f=>f.id!==t.dataset.rm);save();renderShop()}
+  if(t.dataset.key!==undefined){S.checked[t.dataset.key]=t.checked;save();renderShop();sync("coche",t.dataset.key,t.checked)}
+  if(t.dataset.free){const f=S.free.find(f=>f.id===t.dataset.free);f.done=t.checked;save();renderShop();sync("freeDone",f.id,t.checked)}
+  if(t.dataset.rm){S.free=S.free.filter(f=>f.id!==t.dataset.rm);save();renderShop();sync("rmFree",t.dataset.rm)}
 };
-$("uncheck").onclick=()=>{S.checked={};S.free.forEach(f=>f.done=false);save();renderShop()};
+$("uncheck").onclick=()=>{sync("uncheck");S.checked={};S.free.forEach(f=>f.done=false);save();renderShop()};
 $("free").onsubmit=e=>{
   e.preventDefault();
-  S.free.push({id:Date.now().toString(36),name:$("fname").value.trim(),a:$("faisle").value,done:false});
+  const f={id:Date.now().toString(36),name:$("fname").value.trim(),a:$("faisle").value,done:false};S.free.push(f);sync("addFree",f);
   $("fname").value="";save();renderShop();
 };
 
@@ -189,7 +191,7 @@ $("addI").onclick=()=>ingRow();
 $("cancel").onclick=()=>$("dlg").close();
 $("del").onclick=()=>{
   if(!confirm("Supprimer cette recette ?"))return;
-  S.recipes=S.recipes.filter(r=>r.id!==editing);delete S.sel[editing];
+  sync("delRecipe",editing);S.recipes=S.recipes.filter(r=>r.id!==editing);delete S.sel[editing];
   save();render();$("dlg").close();
 };
 $("rform").onsubmit=()=>{
@@ -197,12 +199,67 @@ $("rform").onsubmit=()=>{
     const [q,nm,rest]=[d.children[0],d.children[2],d.children];
     return {q:parseFloat(q.value)||0,u:rest[1].value,n:nm.value.trim(),a:rest[3].value};
   }).filter(i=>i.n);
-  const r={id:editing||"r"+Date.now().toString(36),name:$("rname").value.trim(),servings:Math.max(1,parseInt($("rserv").value)||1),steps:$("rsteps").value,ings};
+  const r={ord:(S.recipes.find(x=>x.id===editing)||{}).ord,id:editing||"r"+Date.now().toString(36),name:$("rname").value.trim(),servings:Math.max(1,parseInt($("rserv").value)||1),steps:$("rsteps").value,ings};
   const idx=S.recipes.findIndex(x=>x.id===r.id);
   idx>=0?S.recipes[idx]=r:S.recipes.push(r);
-  save();render();
+  save();render();sync("saveRecipe",r);
 };
-loadRecipes().then(render);
+
+// --- Partage et synchronisation (Firebase Firestore). Sans firebase-config.js rempli, l'appli reste 100 % locale. ---
+let cloud=null,CODE=null,SEED=[];
+const sync=(op,...a)=>cloud&&cloud[op](...a);
+const cfgP=import("./firebase-config.js").then(m=>m.firebaseConfig).catch(()=>null);
+async function connect(cfg,code){
+  const B="https://www.gstatic.com/firebasejs/10.12.2/";
+  const [{initializeApp},F]=await Promise.all([import(B+"firebase-app.js"),import(B+"firebase-firestore.js")]);
+  const {initializeFirestore,persistentLocalCache,persistentMultipleTabManager,doc,collection,onSnapshot,setDoc,updateDoc,deleteDoc,deleteField,FieldPath,writeBatch,arrayUnion}=F;
+  const db=initializeFirestore(initializeApp(cfg),{localCache:persistentLocalCache({tabManager:persistentMultipleTabManager()})});
+  const ref=doc(db,"listes",code),rc=collection(ref,"recettes");
+  const enc=k=>btoa(unescape(encodeURIComponent(k))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+  const dec=e=>decodeURIComponent(escape(atob(e.replace(/-/g,"+").replace(/_/g,"/"))));
+  const ok=()=>{};
+  const up=(f,id,v)=>updateDoc(ref,new FieldPath(f,id),v).catch(ok);
+  const L=JSON.parse(JSON.stringify(S)); // données locales, versées dans une liste vide
+  try{if(!localStorage.getItem(KEY+"-avant-partage"))localStorage.setItem(KEY+"-avant-partage",localStorage.getItem(KEY)||"{}")}catch(e){}
+  cloud={guests:n=>updateDoc(ref,{guests:n}).catch(ok),sel:(i,v)=>up("sel",i,v),
+    coche:(k,v)=>up("coches",enc(k),v?true:deleteField()),
+    uncheck:()=>updateDoc(ref,"coches",deleteField(),...S.free.flatMap(f=>[new FieldPath("libres",f.id,"done"),false])).catch(ok),
+    addFree:f=>up("libres",f.id,{name:f.name,a:f.a,done:false}),
+    freeDone:(i,v)=>updateDoc(ref,new FieldPath("libres",i,"done"),v).catch(ok),
+    rmFree:i=>up("libres",i,deleteField()),
+    saveRecipe:r=>setDoc(doc(rc,r.id),{...r,ord:r.ord||Date.now()},{merge:true}),
+    delRecipe:i=>{deleteDoc(doc(rc,i));up("sel",i,deleteField())}};
+  let ready=false,seeded=false;
+  onSnapshot(ref,async snap=>{
+    if(!snap.exists()){
+      if(snap.metadata.fromCache)return; // pas encore de réponse du serveur
+      const b=writeBatch(db);L.recipes.forEach((r,i)=>b.set(doc(rc,r.id),{...r,ord:i}));await b.commit();
+      return setDoc(ref,{guests:L.guests,sel:L.sel,seeded:L.seeded,
+        coches:Object.fromEntries(Object.keys(L.checked).filter(k=>L.checked[k]).map(k=>[enc(k),true])),
+        libres:Object.fromEntries(L.free.map(f=>[f.id,{name:f.name,a:f.a,done:!!f.done}]))});
+    }
+    ready=true;const d=snap.data();
+    S.guests=d.guests||4;S.sel=d.sel||{};S.seeded=d.seeded||[];
+    S.checked=Object.fromEntries(Object.keys(d.coches||{}).map(k=>[dec(k),true]));
+    S.free=Object.entries(d.libres||{}).map(([id,v])=>({id,...v})).sort((a,b)=>a.id<b.id?-1:1);
+    $("guests").value=S.guests;save();renderShop();
+    const miss=SEED.filter(r=>!S.seeded.includes(r.id)); // nouvelles recettes de recettes.json
+    if(!seeded&&miss.length){seeded=true;const b=writeBatch(db);miss.forEach(r=>b.set(doc(rc,r.id),{...r,ord:Date.now()}));b.update(ref,{seeded:arrayUnion(...miss.map(r=>r.id))});b.commit().catch(ok)}
+  });
+  onSnapshot(rc,snap=>{if(!ready)return;S.recipes=snap.docs.map(x=>x.data()).sort((a,b)=>(a.ord||0)-(b.ord||0));save();render()});
+  $("sync").textContent="● synchronisée";
+}
+$("share").onclick=()=>{
+  if(!CODE){CODE=[...crypto.getRandomValues(new Uint8Array(24))].map(b=>(b%36).toString(36)).join("");localStorage.setItem("panier-liste",CODE);location.search="?liste="+CODE;return}
+  navigator.clipboard.writeText(location.origin+location.pathname+"?liste="+CODE).then(()=>{$("sync").textContent="● lien copié";setTimeout(()=>$("sync").textContent="● synchronisée",1500)})
+};
+(async()=>{
+  SEED=await loadRecipes();render();
+  const cfg=await cfgP;if(!cfg||/REMPLACER/.test(cfg.apiKey||"REMPLACER"))return;
+  $("share").hidden=false;
+  CODE=new URLSearchParams(location.search).get("liste")||localStorage.getItem("panier-liste");
+  if(CODE){localStorage.setItem("panier-liste",CODE);try{await connect(cfg,CODE)}catch(e){$("sync").textContent="synchronisation indisponible"}}
+})();
 </script>
 </body>
 </html>
