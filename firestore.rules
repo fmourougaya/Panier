@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Une liste = un code secret et long dans le lien. Impossible de lister les listes existantes :
+    // il faut connaître le code pour y accéder.
+    match /listes/{code} {
+      allow get, write: if code.size() >= 20;
+      allow list: if false;
+      match /recettes/{id} {
+        allow read, write: if code.size() >= 20;
+      }
+    }
+  }
+}
