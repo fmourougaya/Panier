@@ -1,7 +1,7 @@
 // Copiez ici la configuration de votre application web Firebase
 // (console Firebase > Paramètres du projet > Vos applications > Configuration du SDK).
 // Tant que les valeurs contiennent "REMPLACER", l'appli reste purement locale.
-const firebaseConfig = {
+export const firebaseConfig = {
 
   apiKey: "AIzaSyBL2rqeb2c1A9tMd6tOukKdVy0cOBBQW1w",
 
