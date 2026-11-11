@@ -51,7 +51,7 @@
     "id": "dahl-saucisses",
     "name": "Dahl aux saucisses fumées",
     "servings": 4,
-    "steps": "Émincer l'oignon, hacher l'ail et le gingembre, couper les saucisses en rondelles. Faire revenir oignon et saucisses 5 min dans l'huile, ajouter l'ail, le gingembre et les épices 1 min. Ajouter les lentilles rincées, les tomates, le lait de coco et 600 ml d'eau. Laisser mijoter 20 à 25 min en remuant, jusqu'à une texture crémeuse. Saler, poivrer.",
+    "steps": "Émincer l'oignon, hacher l'ail et le gingembre, couper les saucisses en rondelles. Faire revenir oignon et saucisses 5 min dans l'huile, ajouter l'ail, le gingembre et les épices 1 min. Ajouter les lentilles, les tomates concassées et le lait de coco. Laisser mijoter jusqu'à tendreté.",
     "ings": [
       {"q": 250, "u": "g", "n": "lentilles corail", "a": "Épicerie"},
       {"q": 300, "u": "g", "n": "saucisses fumées", "a": "Boucherie et poissonnerie"},
@@ -70,7 +70,7 @@
     "id": "choux-lardons",
     "name": "Poêlée de choux aux lardons",
     "servings": 4,
-    "steps": "Émincer le chou et l'oignon. Faire dorer les lardons à sec dans une grande poêle, les réserver. Faire fondre l'oignon dans la même poêle avec l'huile, ajouter le chou et cuire 15 à 20 min à feu moyen en remuant. Remettre les lardons, ajouter la crème et la moutarde, mélanger 2 min. Poivrer.",
+    "steps": "Émincer le chou et l'oignon. Faire dorer les lardons à sec dans une grande poêle, les réserver. Faire fondre l'oignon dans la même poêle avec l'huile, ajouter le chou et cuire 15 min. Ajouter la crème fraîche et la moutarde, remettre les lardons et finir la cuisson.",
     "ings": [
       {"q": 1, "u": "", "n": "chou vert frisé", "a": "Fruits et légumes"},
       {"q": 200, "u": "g", "n": "lardons", "a": "Boucherie et poissonnerie"},
@@ -84,7 +84,7 @@
     "id": "fajitas",
     "name": "Fajitas au poulet",
     "servings": 4,
-    "steps": "Couper le poulet, les poivrons et les oignons en lanières. Mariner le poulet avec les épices, le jus du citron vert et un peu d'huile. Saisir le poulet à feu vif 6 à 8 min, le réserver. Faire revenir poivrons et oignons 8 à 10 min, remettre le poulet. Réchauffer les tortillas et servir avec la salsa, la crème et le fromage râpé.",
+    "steps": "Couper le poulet, les poivrons et les oignons en lanières. Mariner le poulet avec les épices, le jus du citron vert et un peu d'huile. Saisir le poulet à feu vif 6 à 8 min, le réserver. Faire revenir les légumes 5 min, remettre le poulet et servir dans des tortillas avec salsa, crème fraîche et fromage râpé.",
     "ings": [
       {"q": 500, "u": "g", "n": "blancs de poulet", "a": "Boucherie et poissonnerie"},
       {"q": 3, "u": "", "n": "poivrons", "a": "Fruits et légumes"},
@@ -102,7 +102,7 @@
     "id": "chili",
     "name": "Chili con carne",
     "servings": 4,
-    "steps": "Faire revenir l'oignon et le poivron émincés, ajouter le bœuf haché et le faire dorer. Ajouter les épices, les tomates et les haricots rouges égouttés. Laisser mijoter 30 min à feu doux. Cuire le riz pendant ce temps et servir.",
+    "steps": "Faire revenir l'oignon et le poivron émincés, ajouter le bœuf haché et le faire dorer. Ajouter les épices, les tomates et les haricots rouges égouttés. Laisser mijoter 30 min à feu doux, puis servir avec du riz.",
     "ings": [
       {"q": 500, "u": "g", "n": "bœuf haché", "a": "Boucherie et poissonnerie"},
       {"q": 1, "u": "", "n": "oignons", "a": "Fruits et légumes"},
@@ -119,7 +119,7 @@
     "id": "curry-pois-chiches",
     "name": "Curry de pois chiches et épinards",
     "servings": 4,
-    "steps": "Faire revenir l'oignon et l'ail, ajouter le curry 1 min. Ajouter les tomates, le lait de coco et les pois chiches égouttés, mijoter 10 min. Incorporer les épinards et cuire 5 à 8 min. Cuire le riz en parallèle et servir.",
+    "steps": "Faire revenir l'oignon et l'ail, ajouter le curry 1 min. Ajouter les tomates, le lait de coco et les pois chiches égouttés, mijoter 10 min. Incorporer les épinards et cuire 5 à 8 min. Servir avec du riz.",
     "ings": [
       {"q": 800, "u": "g", "n": "pois chiches", "a": "Épicerie"},
       {"q": 400, "u": "g", "n": "épinards surgelés", "a": "Surgelés"},
@@ -135,7 +135,7 @@
     "id": "lasagnes",
     "name": "Lasagnes",
     "servings": 4,
-    "steps": "Faire revenir l'oignon et l'ail, ajouter le bœuf haché puis les tomates et l'origan, mijoter 20 min. Préparer la béchamel : fondre le beurre, ajouter la farine, verser le lait peu à peu en remuant jusqu'à épaississement. Dans un plat, alterner sauce, plaques de lasagnes et béchamel, finir par le fromage râpé. Cuire 35 à 40 min à 180 °C.",
+    "steps": "Faire revenir l'oignon et l'ail, ajouter le bœuf haché puis les tomates et l'origan, mijoter 20 min. Préparer la béchamel : fondre le beurre, ajouter la farine, verser le lait peu à peu et épaissir. Alterner couches de pâte, sauce et béchamel, puis faire cuire au four.",
     "ings": [
       {"q": 500, "u": "g", "n": "bœuf haché", "a": "Boucherie et poissonnerie"},
       {"q": 1, "u": "", "n": "oignons", "a": "Fruits et légumes"},
@@ -154,7 +154,7 @@
     "id": "gratin-chou-fleur",
     "name": "Gratin de chou-fleur",
     "servings": 4,
-    "steps": "Détailler le chou-fleur en bouquets et les cuire 8 min à l'eau bouillante salée, égoutter. Préparer la béchamel avec le beurre, la farine et le lait, assaisonner de muscade. Disposer les bouquets dans un plat, napper de béchamel, couvrir de fromage râpé et gratiner 20 min à 200 °C.",
+    "steps": "Détailler le chou-fleur en bouquets et les cuire 8 min à l'eau bouillante salée, égoutter. Préparer la béchamel avec le beurre, la farine et le lait, assaisonner de muscade. Disposer les bouquets dans un plat, les recouvrir de béchamel et de fromage râpé, puis gratiner.",
     "ings": [
       {"q": 1, "u": "", "n": "chou-fleur", "a": "Fruits et légumes"},
       {"q": 40, "u": "g", "n": "beurre", "a": "Crèmerie"},
@@ -168,7 +168,7 @@
     "id": "couscous",
     "name": "Couscous",
     "servings": 4,
-    "steps": "Faire dorer les cuisses de poulet et les oignons dans l'huile, ajouter les épices, les tomates et 1 L d'eau, cuire 20 min. Ajouter carottes et navets, puis 15 min plus tard les courgettes et les pois chiches. Griller les merguez à la poêle. Hydrater la semoule à l'eau bouillante salée, égrener à la fourchette et servir avec le bouillon et la harissa.",
+    "steps": "Faire dorer les cuisses de poulet et les oignons dans l'huile, ajouter les épices, les tomates et 1 L d'eau, cuire 20 min. Ajouter carottes et navets, puis 15 min plus tard les courgettes. Servir avec la semoule et les pois chiches.",
     "ings": [
       {"q": 300, "u": "g", "n": "semoule", "a": "Épicerie"},
       {"q": 4, "u": "", "n": "cuisses de poulet", "a": "Boucherie et poissonnerie"},
@@ -188,7 +188,7 @@
     "id": "aiguillettes-asiatiques",
     "name": "Aiguillettes de poulet à l'asiatique",
     "servings": 4,
-    "steps": "Couper les aiguillettes en morceaux, les faire dorer à la poêle dans l'huile 5 min, réserver. Faire sauter carottes et poivron en lamelles, l'oignon, l'ail et le gingembre 6 min. Cuire les nouilles chinoises aux œufs selon le paquet. Remettre le poulet, ajouter la sauce soja et le miel, laisser caraméliser 2 min, mélanger aux nouilles.",
+    "steps": "Couper les aiguillettes en morceaux, les faire dorer à la poêle dans l'huile 5 min, réserver. Faire sauter carottes et poivron en lamelles, l'oignon, l'ail et le gingembre 6 min. Ajouter le poulet, puis la sauce soja, le miel et les nouilles. Mélanger et finir la cuisson.",
     "ings": [
       {"q": 250, "u": "g", "n": "nouilles chinoises aux œufs", "a": "Épicerie"},
       {"q": 500, "u": "g", "n": "aiguillettes de poulet", "a": "Boucherie et poissonnerie"},
@@ -206,7 +206,7 @@
     "id": "blanquette-veau",
     "name": "Blanquette de veau",
     "servings": 4,
-    "steps": "Couvrir le veau d'eau froide, porter à ébullition, écumer. Ajouter carottes, oignons et bouquet garni, cuire 1 h 15 à feu doux. Faire sauter les champignons au beurre. Filtrer 40 cl de bouillon, le lier avec un roux (beurre et farine), hors du feu ajouter la crème, le jaune d'œuf et le jus de citron. Réunir viande, légumes et sauce, servir avec du riz.",
+    "steps": "Couvrir le veau d'eau froide, porter à ébullition, écumer. Ajouter carottes, oignons et bouquet garni, cuire 1 h 15 à feu doux. Faire sauter les champignons au beurre. Filtrer le bouillon, faire une sauce avec la farine et la crème, ajouter le citron et les œufs, puis réincorporer la viande et les champignons.",
     "ings": [
       {"q": 800, "u": "g", "n": "veau (épaule ou sauté)", "a": "Boucherie et poissonnerie"},
       {"q": 3, "u": "", "n": "carottes", "a": "Fruits et légumes"},
@@ -225,7 +225,7 @@
     "id": "legumes-farcis",
     "name": "Légumes farcis (farce allégée)",
     "servings": 4,
-    "steps": "Émietter le pain de mie et le faire tremper dans le lait, bien presser. Mélanger avec la viande, l'oignon et l'ail hachés, l'œuf et les herbes. Évider tomates, courgettes et poivrons, les farcir, arroser d'huile. Cuire 45 min à 180 °C.",
+    "steps": "Émietter le pain de mie et le faire tremper dans le lait, bien presser. Mélanger avec la viande, l'oignon et l'ail hachés, l'œuf et les herbes. Évider tomates, courgettes et poivron, remplir avec la farce et cuire au four.",
     "ings": [
       {"q": 600, "u": "g", "n": "tomates", "a": "Fruits et légumes"},
       {"q": 2, "u": "", "n": "courgettes", "a": "Fruits et légumes"},
@@ -259,7 +259,7 @@
     "id": "ratatouille",
     "name": "Ratatouille",
     "servings": 4,
-    "steps": "Couper tous les légumes en dés. Faire revenir les oignons dans l'huile, puis ajouter successivement aubergines, poivrons, courgettes, ail et tomates. Ajouter les herbes, saler, poivrer et laisser mijoter 45 min à feu doux, à couvert puis à découvert.",
+    "steps": "Couper tous les légumes en dés. Faire revenir les oignons dans l'huile, puis ajouter successivement aubergines, poivrons, courgettes, ail et tomates. Ajouter les herbes, saler, poivrer et laisser mijoter doucement.",
     "ings": [
       {"q": 2, "u": "", "n": "aubergines", "a": "Fruits et légumes"},
       {"q": 2, "u": "", "n": "courgettes", "a": "Fruits et légumes"},
@@ -275,7 +275,7 @@
     "id": "quiche-lorraine",
     "name": "Quiche lorraine",
     "servings": 4,
-    "steps": "Dérouler la pâte dans un moule, la piquer. Faire dorer les lardons à sec. Battre les œufs avec la crème et le lait, poivrer. Répartir lardons et fromage sur la pâte, verser l'appareil et cuire 35 min à 180 °C.",
+    "steps": "Dérouler la pâte dans un moule, la piquer. Faire dorer les lardons à sec. Battre les œufs avec la crème et le lait, poivrer. Répartir lardons et fromage sur la pâte, verser l'appareil et cuire au four.",
     "ings": [
       {"q": 1, "u": "", "n": "pâte brisée", "a": "Crèmerie"},
       {"q": 200, "u": "g", "n": "lardons", "a": "Boucherie et poissonnerie"},
@@ -289,7 +289,7 @@
     "id": "veloute-potimarron",
     "name": "Velouté de potimarron",
     "servings": 4,
-    "steps": "Couper le potimarron (sans l'éplucher) et les pommes de terre en morceaux. Faire revenir l'oignon dans l'huile, ajouter les légumes, le cube de bouillon et couvrir d'eau. Cuire 25 min, mixer avec la crème, saler, poivrer.",
+    "steps": "Couper le potimarron (sans l'éplucher) et les pommes de terre en morceaux. Faire revenir l'oignon dans l'huile, ajouter les légumes, le cube de bouillon et couvrir d'eau. Cuire 25 min, mixer avec la crème fraîche et servir.",
     "ings": [
       {"q": 1, "u": "", "n": "potimarron", "a": "Fruits et légumes"},
       {"q": 0.5, "u": "kg", "n": "pommes de terre", "a": "Fruits et légumes"},
@@ -303,7 +303,7 @@
     "id": "saumon-papillote",
     "name": "Saumon en papillote et riz",
     "servings": 4,
-    "steps": "Couper courgettes et carottes en fins bâtonnets. Sur chaque feuille de papier cuisson, déposer un pavé de saumon, des légumes, un filet d'huile et des rondelles de citron, fermer la papillote. Cuire 20 min à 200 °C. Servir avec le riz cuit à part.",
+    "steps": "Couper courgettes et carottes en fins bâtonnets. Sur chaque feuille de papier cuisson, déposer un pavé de saumon, des légumes, un filet d'huile et des rondelles de citron, fermer la papillote et cuire au four 20 min. Servir avec du riz.",
     "ings": [
       {"q": 4, "u": "", "n": "pavés de saumon", "a": "Boucherie et poissonnerie"},
       {"q": 2, "u": "", "n": "courgettes", "a": "Fruits et légumes"},
@@ -317,7 +317,7 @@
     "id": "hachis-parmentier",
     "name": "Hachis parmentier",
     "servings": 4,
-    "steps": "Cuire les pommes de terre à l'eau, les écraser avec le beurre et le lait. Faire revenir l'oignon et le bœuf haché, saler, poivrer. Étaler la viande dans un plat, recouvrir de purée, parsemer de fromage râpé et gratiner 25 min à 200 °C.",
+    "steps": "Cuire les pommes de terre à l'eau, les écraser avec le beurre et le lait. Faire revenir l'oignon et le bœuf haché, saler, poivrer. Étaler la viande dans un plat, recouvrir de purée et finir au four avec le fromage râpé.",
     "ings": [
       {"q": 500, "u": "g", "n": "bœuf haché", "a": "Boucherie et poissonnerie"},
       {"q": 1, "u": "kg", "n": "pommes de terre", "a": "Fruits et légumes"},
@@ -326,4 +326,5 @@
       {"q": 40, "u": "g", "n": "beurre", "a": "Crèmerie"},
       {"q": 50, "u": "g", "n": "fromage râpé", "a": "Crèmerie"}
     ]
+  }
 ]
