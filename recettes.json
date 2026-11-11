@@ -131,4 +131,199 @@
       {"q": 300, "u": "g", "n": "riz", "a": "Épicerie"}
     ]
   }
+  {
+    "id": "lasagnes",
+    "name": "Lasagnes",
+    "servings": 4,
+    "steps": "Faire revenir l'oignon et l'ail, ajouter le bœuf haché puis les tomates et l'origan, mijoter 20 min. Préparer la béchamel : fondre le beurre, ajouter la farine, verser le lait peu à peu en remuant jusqu'à épaississement. Dans un plat, alterner sauce, plaques de lasagnes et béchamel, finir par le fromage râpé. Cuire 35 à 40 min à 180 °C.",
+    "ings": [
+      {"q": 500, "u": "g", "n": "bœuf haché", "a": "Boucherie et poissonnerie"},
+      {"q": 1, "u": "", "n": "oignons", "a": "Fruits et légumes"},
+      {"q": 2, "u": "", "n": "gousses d'ail", "a": "Fruits et légumes"},
+      {"q": 800, "u": "g", "n": "tomates concassées", "a": "Épicerie"},
+      {"q": 250, "u": "g", "n": "plaques de lasagnes", "a": "Épicerie"},
+      {"q": 50, "u": "g", "n": "beurre", "a": "Crèmerie"},
+      {"q": 50, "u": "g", "n": "farine", "a": "Épicerie"},
+      {"q": 60, "u": "cl", "n": "lait", "a": "Crèmerie"},
+      {"q": 150, "u": "g", "n": "fromage râpé", "a": "Crèmerie"},
+      {"q": 1, "u": "c. à café", "n": "origan", "a": "Épicerie"},
+      {"q": 1, "u": "c. à soupe", "n": "huile d'olive", "a": "Épicerie"}
+    ]
+  },
+  {
+    "id": "gratin-chou-fleur",
+    "name": "Gratin de chou-fleur",
+    "servings": 4,
+    "steps": "Détailler le chou-fleur en bouquets et les cuire 8 min à l'eau bouillante salée, égoutter. Préparer la béchamel avec le beurre, la farine et le lait, assaisonner de muscade. Disposer les bouquets dans un plat, napper de béchamel, couvrir de fromage râpé et gratiner 20 min à 200 °C.",
+    "ings": [
+      {"q": 1, "u": "", "n": "chou-fleur", "a": "Fruits et légumes"},
+      {"q": 40, "u": "g", "n": "beurre", "a": "Crèmerie"},
+      {"q": 40, "u": "g", "n": "farine", "a": "Épicerie"},
+      {"q": 50, "u": "cl", "n": "lait", "a": "Crèmerie"},
+      {"q": 100, "u": "g", "n": "fromage râpé", "a": "Crèmerie"},
+      {"q": 0.25, "u": "c. à café", "n": "noix de muscade", "a": "Épicerie"}
+    ]
+  },
+  {
+    "id": "couscous",
+    "name": "Couscous",
+    "servings": 4,
+    "steps": "Faire dorer les cuisses de poulet et les oignons dans l'huile, ajouter les épices, les tomates et 1 L d'eau, cuire 20 min. Ajouter carottes et navets, puis 15 min plus tard les courgettes et les pois chiches. Griller les merguez à la poêle. Hydrater la semoule à l'eau bouillante salée, égrener à la fourchette et servir avec le bouillon et la harissa.",
+    "ings": [
+      {"q": 300, "u": "g", "n": "semoule", "a": "Épicerie"},
+      {"q": 4, "u": "", "n": "cuisses de poulet", "a": "Boucherie et poissonnerie"},
+      {"q": 4, "u": "", "n": "merguez", "a": "Boucherie et poissonnerie"},
+      {"q": 4, "u": "", "n": "carottes", "a": "Fruits et légumes"},
+      {"q": 2, "u": "", "n": "courgettes", "a": "Fruits et légumes"},
+      {"q": 2, "u": "", "n": "navets", "a": "Fruits et légumes"},
+      {"q": 400, "u": "g", "n": "pois chiches", "a": "Épicerie"},
+      {"q": 2, "u": "", "n": "oignons", "a": "Fruits et légumes"},
+      {"q": 400, "u": "g", "n": "tomates concassées", "a": "Épicerie"},
+      {"q": 2, "u": "c. à soupe", "n": "ras el hanout", "a": "Épicerie"},
+      {"q": 1, "u": "c. à café", "n": "harissa", "a": "Épicerie"},
+      {"q": 2, "u": "c. à soupe", "n": "huile d'olive", "a": "Épicerie"}
+    ]
+  },
+  {
+    "id": "aiguillettes-asiatiques",
+    "name": "Aiguillettes de poulet à l'asiatique",
+    "servings": 4,
+    "steps": "Couper les aiguillettes en morceaux, les faire dorer à la poêle dans l'huile 5 min, réserver. Faire sauter carottes et poivron en lamelles, l'oignon, l'ail et le gingembre 6 min. Cuire les nouilles chinoises aux œufs selon le paquet. Remettre le poulet, ajouter la sauce soja et le miel, laisser caraméliser 2 min, mélanger aux nouilles.",
+    "ings": [
+      {"q": 250, "u": "g", "n": "nouilles chinoises aux œufs", "a": "Épicerie"},
+      {"q": 500, "u": "g", "n": "aiguillettes de poulet", "a": "Boucherie et poissonnerie"},
+      {"q": 2, "u": "", "n": "carottes", "a": "Fruits et légumes"},
+      {"q": 1, "u": "", "n": "poivrons", "a": "Fruits et légumes"},
+      {"q": 1, "u": "", "n": "oignons", "a": "Fruits et légumes"},
+      {"q": 2, "u": "", "n": "gousses d'ail", "a": "Fruits et légumes"},
+      {"q": 15, "u": "g", "n": "gingembre frais", "a": "Fruits et légumes"},
+      {"q": 4, "u": "c. à soupe", "n": "sauce soja", "a": "Épicerie"},
+      {"q": 1, "u": "c. à soupe", "n": "miel", "a": "Épicerie"},
+      {"q": 2, "u": "c. à soupe", "n": "huile de tournesol", "a": "Épicerie"}
+    ]
+  },
+  {
+    "id": "blanquette-veau",
+    "name": "Blanquette de veau",
+    "servings": 4,
+    "steps": "Couvrir le veau d'eau froide, porter à ébullition, écumer. Ajouter carottes, oignons et bouquet garni, cuire 1 h 15 à feu doux. Faire sauter les champignons au beurre. Filtrer 40 cl de bouillon, le lier avec un roux (beurre et farine), hors du feu ajouter la crème, le jaune d'œuf et le jus de citron. Réunir viande, légumes et sauce, servir avec du riz.",
+    "ings": [
+      {"q": 800, "u": "g", "n": "veau (épaule ou sauté)", "a": "Boucherie et poissonnerie"},
+      {"q": 3, "u": "", "n": "carottes", "a": "Fruits et légumes"},
+      {"q": 2, "u": "", "n": "oignons", "a": "Fruits et légumes"},
+      {"q": 250, "u": "g", "n": "champignons de Paris", "a": "Fruits et légumes"},
+      {"q": 40, "u": "g", "n": "beurre", "a": "Crèmerie"},
+      {"q": 40, "u": "g", "n": "farine", "a": "Épicerie"},
+      {"q": 150, "u": "g", "n": "crème fraîche", "a": "Crèmerie"},
+      {"q": 1, "u": "", "n": "citron", "a": "Fruits et légumes"},
+      {"q": 1, "u": "", "n": "œufs", "a": "Crèmerie"},
+      {"q": 1, "u": "", "n": "bouquet garni", "a": "Épicerie"},
+      {"q": 300, "u": "g", "n": "riz", "a": "Épicerie"}
+    ]
+  },
+  {
+    "id": "legumes-farcis",
+    "name": "Légumes farcis (farce allégée)",
+    "servings": 4,
+    "steps": "Émietter le pain de mie et le faire tremper dans le lait, bien presser. Mélanger avec la viande, l'oignon et l'ail hachés, l'œuf et les herbes. Évider tomates, courgettes et poivrons, les farcir, arroser d'huile. Cuire 45 min à 180 °C.",
+    "ings": [
+      {"q": 600, "u": "g", "n": "tomates", "a": "Fruits et légumes"},
+      {"q": 2, "u": "", "n": "courgettes", "a": "Fruits et légumes"},
+      {"q": 2, "u": "", "n": "poivrons", "a": "Fruits et légumes"},
+      {"q": 1, "u": "", "n": "oignons", "a": "Fruits et légumes"},
+      {"q": 300, "u": "g", "n": "bœuf haché", "a": "Boucherie et poissonnerie"},
+      {"q": 4, "u": "", "n": "tranches de pain de mie", "a": "Boulangerie"},
+      {"q": 15, "u": "cl", "n": "lait", "a": "Crèmerie"},
+      {"q": 1, "u": "", "n": "œufs", "a": "Crèmerie"},
+      {"q": 2, "u": "", "n": "gousses d'ail", "a": "Fruits et légumes"},
+      {"q": 1, "u": "c. à café", "n": "herbes de Provence", "a": "Épicerie"},
+      {"q": 1, "u": "c. à soupe", "n": "huile d'olive", "a": "Épicerie"}
+    ]
+  },
+  {
+    "id": "salade-endives",
+    "name": "Salade d'endives",
+    "servings": 4,
+    "steps": "Émincer les endives, couper la pomme en dés, émietter le roquefort, concasser les noix. Préparer la vinaigrette avec la moutarde, le vinaigre et l'huile. Mélanger le tout au moment de servir.",
+    "ings": [
+      {"q": 4, "u": "", "n": "endives", "a": "Fruits et légumes"},
+      {"q": 1, "u": "", "n": "pommes", "a": "Fruits et légumes"},
+      {"q": 50, "u": "g", "n": "noix", "a": "Épicerie"},
+      {"q": 100, "u": "g", "n": "roquefort", "a": "Crèmerie"},
+      {"q": 1, "u": "c. à soupe", "n": "moutarde", "a": "Épicerie"},
+      {"q": 2, "u": "c. à soupe", "n": "vinaigre", "a": "Épicerie"},
+      {"q": 3, "u": "c. à soupe", "n": "huile d'olive", "a": "Épicerie"}
+    ]
+  },
+  {
+    "id": "ratatouille",
+    "name": "Ratatouille",
+    "servings": 4,
+    "steps": "Couper tous les légumes en dés. Faire revenir les oignons dans l'huile, puis ajouter successivement aubergines, poivrons, courgettes, ail et tomates. Ajouter les herbes, saler, poivrer et laisser mijoter 45 min à feu doux, à couvert puis à découvert.",
+    "ings": [
+      {"q": 2, "u": "", "n": "aubergines", "a": "Fruits et légumes"},
+      {"q": 2, "u": "", "n": "courgettes", "a": "Fruits et légumes"},
+      {"q": 2, "u": "", "n": "poivrons", "a": "Fruits et légumes"},
+      {"q": 600, "u": "g", "n": "tomates", "a": "Fruits et légumes"},
+      {"q": 2, "u": "", "n": "oignons", "a": "Fruits et légumes"},
+      {"q": 3, "u": "", "n": "gousses d'ail", "a": "Fruits et légumes"},
+      {"q": 4, "u": "c. à soupe", "n": "huile d'olive", "a": "Épicerie"},
+      {"q": 1, "u": "c. à café", "n": "herbes de Provence", "a": "Épicerie"}
+    ]
+  },
+  {
+    "id": "quiche-lorraine",
+    "name": "Quiche lorraine",
+    "servings": 4,
+    "steps": "Dérouler la pâte dans un moule, la piquer. Faire dorer les lardons à sec. Battre les œufs avec la crème et le lait, poivrer. Répartir lardons et fromage sur la pâte, verser l'appareil et cuire 35 min à 180 °C.",
+    "ings": [
+      {"q": 1, "u": "", "n": "pâte brisée", "a": "Crèmerie"},
+      {"q": 200, "u": "g", "n": "lardons", "a": "Boucherie et poissonnerie"},
+      {"q": 3, "u": "", "n": "œufs", "a": "Crèmerie"},
+      {"q": 200, "u": "g", "n": "crème fraîche", "a": "Crèmerie"},
+      {"q": 20, "u": "cl", "n": "lait", "a": "Crèmerie"},
+      {"q": 100, "u": "g", "n": "fromage râpé", "a": "Crèmerie"}
+    ]
+  },
+  {
+    "id": "veloute-potimarron",
+    "name": "Velouté de potimarron",
+    "servings": 4,
+    "steps": "Couper le potimarron (sans l'éplucher) et les pommes de terre en morceaux. Faire revenir l'oignon dans l'huile, ajouter les légumes, le cube de bouillon et couvrir d'eau. Cuire 25 min, mixer avec la crème, saler, poivrer.",
+    "ings": [
+      {"q": 1, "u": "", "n": "potimarron", "a": "Fruits et légumes"},
+      {"q": 0.5, "u": "kg", "n": "pommes de terre", "a": "Fruits et légumes"},
+      {"q": 1, "u": "", "n": "oignons", "a": "Fruits et légumes"},
+      {"q": 100, "u": "g", "n": "crème fraîche", "a": "Crèmerie"},
+      {"q": 1, "u": "", "n": "cubes de bouillon", "a": "Épicerie"},
+      {"q": 1, "u": "c. à soupe", "n": "huile d'olive", "a": "Épicerie"}
+    ]
+  },
+  {
+    "id": "saumon-papillote",
+    "name": "Saumon en papillote et riz",
+    "servings": 4,
+    "steps": "Couper courgettes et carottes en fins bâtonnets. Sur chaque feuille de papier cuisson, déposer un pavé de saumon, des légumes, un filet d'huile et des rondelles de citron, fermer la papillote. Cuire 20 min à 200 °C. Servir avec le riz cuit à part.",
+    "ings": [
+      {"q": 4, "u": "", "n": "pavés de saumon", "a": "Boucherie et poissonnerie"},
+      {"q": 2, "u": "", "n": "courgettes", "a": "Fruits et légumes"},
+      {"q": 2, "u": "", "n": "carottes", "a": "Fruits et légumes"},
+      {"q": 1, "u": "", "n": "citron", "a": "Fruits et légumes"},
+      {"q": 2, "u": "c. à soupe", "n": "huile d'olive", "a": "Épicerie"},
+      {"q": 300, "u": "g", "n": "riz", "a": "Épicerie"}
+    ]
+  },
+  {
+    "id": "hachis-parmentier",
+    "name": "Hachis parmentier",
+    "servings": 4,
+    "steps": "Cuire les pommes de terre à l'eau, les écraser avec le beurre et le lait. Faire revenir l'oignon et le bœuf haché, saler, poivrer. Étaler la viande dans un plat, recouvrir de purée, parsemer de fromage râpé et gratiner 25 min à 200 °C.",
+    "ings": [
+      {"q": 500, "u": "g", "n": "bœuf haché", "a": "Boucherie et poissonnerie"},
+      {"q": 1, "u": "kg", "n": "pommes de terre", "a": "Fruits et légumes"},
+      {"q": 1, "u": "", "n": "oignons", "a": "Fruits et légumes"},
+      {"q": 15, "u": "cl", "n": "lait", "a": "Crèmerie"},
+      {"q": 40, "u": "g", "n": "beurre", "a": "Crèmerie"},
+      {"q": 50, "u": "g", "n": "fromage râpé", "a": "Crèmerie"}
+    ]
 ]
